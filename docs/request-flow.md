@@ -7,31 +7,31 @@ ip、time、method、path、status
 
 ## 2. 请求处理流程
 
-接收访问日志
-        ↓
-解析日志，提取 ip/time/method/path/status
-        ↓
-检查 ban:ip:{ip}
-        ↓
-如果已封禁，输出 blocked，并结束流程
-        ↓
-更新访问次数 ip:{ip}:count:{date}
-        ↓
-更新 IP 信息 ip:{ip}:info
-        ↓
-记录最近访问日志 ip:{ip}:logs
-        ↓
-加入当天活跃 IP 集合 active:ip:{date}
-        ↓
-根据 path/status 计算本次风险分
-        ↓
-更新风险排行榜 risk:rank:{date}
-        ↓
-获取该 IP 当天累计风险分
-        ↓
-如果风险分 >= 阈值，写入 ban:ip:{ip} 并设置 TTL
-        ↓
-输出处理结果
+接收访问日志  
+        ↓  
+解析日志，提取 ip/time/method/path/status  
+        ↓  
+检查 ban:ip:{ip}  
+        ↓  
+如果已封禁，输出blocked，并结束流程  
+        ↓  
+更新访问次数ip:{ip}:count:{date}  
+        ↓  
+更新 IP 信息ip:{ip}:info  
+        ↓  
+记录最近访问日志ip:{ip}:logs  
+        ↓  
+加入当天活跃IP集合 active:ip:{date}  
+        ↓  
+根据 path/status 计算本次风险分  
+        ↓  
+更新风险排行榜 risk:rank:{date}  
+        ↓  
+获取该 IP 当天累计风险分  
+        ↓  
+如果风险分 >= 阈值，写入 ban:ip:{ip} 并设置 TTL  
+        ↓  
+输出处理结果  
 
 ## 3. 关键处理逻辑
 
