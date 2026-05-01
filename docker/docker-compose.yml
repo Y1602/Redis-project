@@ -1,0 +1,20 @@
+services:
+  redis:
+    image: redis:latest
+    container_name: accessguard-redis
+    ports:
+      - 6380:6379
+    command: redis-server --requirepass redispwd
+    restart: unless-stopped
+
+  accessguard:
+    image: accessguard:1.0
+    container_name: accessguard-app
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: redispwd
+      REDIS_DB: 0
+    depends_on:
+      - redis
+
