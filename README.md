@@ -1,6 +1,4 @@
-# Redis-project
-
-## 项目简介
+# Redis-project项目简介
 
 本项目是一个基于 Redis 的访问监控与简单风控练习项目。
 
