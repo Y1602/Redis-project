@@ -7,6 +7,14 @@ services:
     command: redis-server --requirepass redispwd
     restart: unless-stopped
 
+  nginx:
+    image: nginx:latest
+    container_name: accessguard-nginx
+    volumes:
+      - ./logs:/var/log/nginx
+    ports:
+      - 80:80
+
   accessguard:
     image: accessguard:1.0
     container_name: accessguard-app
@@ -15,6 +23,22 @@ services:
       REDIS_PORT: 6379
       REDIS_PASSWORD: redispwd
       REDIS_DB: 0
+    ports:
+      - 5000:5000
     depends_on:
       - redis
+      - nginx
+
+  log-forwarder:
+    image: log-forwarder:latest
+    container_name: accessguard-log-forwarder
+    environment:
+      ACCESSGUARD_URL: http://accessguard-app:5000/logs/ingest
+      NGINX_LOG_PATH: /logs/access.log
+      SLEEP_INTERVAL: 1
+    volumes:
+      - ./logs:/logs        # 挂载 Nginx 日志目录
+    depends_on:
+      - accessguard
+      - nginx
 

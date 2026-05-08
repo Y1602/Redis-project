@@ -1,0 +1,13 @@
+# log-forwarder Dockerfile
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# 只安装外发脚本所需依赖
+COPY requirements_log.txt .
+RUN pip install --no-cache-dir -r requirements_log.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+COPY log_forwarder.py .
+
+# 容器内读取 Nginx 日志并 POST 到 AccessGuard
+CMD ["python", "log_forwarder.py"]
