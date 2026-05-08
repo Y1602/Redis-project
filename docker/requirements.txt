@@ -1,1 +1,5 @@
 redis
+nginx
+fastapi
+uvicorn
+requests
