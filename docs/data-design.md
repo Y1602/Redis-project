@@ -81,4 +81,4 @@ AccessGuard 是一个基于 Redis 的访问监控与风控练习项目。
         操作命令-SET ban:ip:{ip} 1 EX 60
 		-GET ban:ip:{ip}
 		-TTL ban:ip:{ip}
-	TTL-第一阶段设计为60秒
+	TTL-建议设为60秒

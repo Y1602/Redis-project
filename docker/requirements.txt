@@ -1,4 +1,11 @@
 redis
+<<<<<<< HEAD
 fastapi
 uvicorn
 requests
+=======
+nginx
+fastapi
+uvicorn
+requests
+>>>>>>> 1956afec188c14d4b93c83dcd591a01569f4bd43

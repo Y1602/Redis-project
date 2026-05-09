@@ -85,3 +85,17 @@
 2026/05/08 09:41:18 [notice] 1#1: start worker process 29
 2026/05/08 09:41:18 [notice] 1#1: start worker process 30
 2026/05/08 09:42:00 [error] 30#30: *2 open() "/usr/share/nginx/html/login" failed (2: No such file or directory), client: 172.19.0.1, server: localhost, request: "GET /login HTTP/1.1", host: "127.0.0.1"
+2026/05/08 10:01:07 [error] 29#29: *5 open() "/usr/share/nginx/html/druid/index.html" failed (2: No such file or directory), client: 20.65.193.199, server: localhost, request: "GET /druid/index.html HTTP/1.1", host: "42.121.109.127"
+2026/05/08 10:04:33 [error] 29#29: *7 "/usr/share/nginx/html/webui/index.html" is not found (2: No such file or directory), client: 65.49.1.162, server: localhost, request: "GET /webui/ HTTP/1.1", host: "42.121.109.127"
+2026/05/08 10:06:16 [error] 29#29: *8 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 65.49.1.167, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "42.121.109.127"
+2026/05/08 10:07:46 [error] 29#29: *9 "/usr/share/nginx/html/geoserver/web/index.html" is not found (2: No such file or directory), client: 65.49.1.162, server: localhost, request: "GET /geoserver/web/ HTTP/1.1", host: "42.121.109.127"
+2026/05/08 13:25:05 [error] 29#29: *31 open() "/usr/share/nginx/html/.git/config" failed (2: No such file or directory), client: 159.65.204.129, server: localhost, request: "GET /.git/config HTTP/1.1", host: "42.121.109.127"
+2026/05/08 13:31:30 [error] 30#30: *33 open() "/usr/share/nginx/html/SDK/webLanguage" failed (2: No such file or directory), client: 5.61.209.102, server: localhost, request: "GET /SDK/webLanguage HTTP/1.1", host: "42.121.109.127:80"
+2026/05/08 13:31:58 [error] 29#29: *32 open() "/usr/share/nginx/html/manager/html" failed (2: No such file or directory), client: 20.65.185.21, server: localhost, request: "GET /manager/html HTTP/1.1", host: "42.121.109.127"
+2026/05/08 14:02:38 [error] 30#30: *46 open() "/usr/share/nginx/html/shop/login/login.html" failed (2: No such file or directory), client: 43.154.201.245, server: localhost, request: "GET /shop/login/login.html HTTP/1.1", host: "42.121.109.127"
+2026/05/08 14:17:19 [error] 29#29: *51 open() "/usr/share/nginx/html/temp files,/Default.txt.txt" failed (2: No such file or directory), client: 121.199.173.138, server: localhost, request: "GET /temp%20files%2C/Def%61ult.txt%2etxt HTTP/1.0"
+2026/05/08 14:35:48 [error] 30#30: *84 open() "/usr/share/nginx/html/nmaplowercheck1778248528" failed (2: No such file or directory), client: 121.199.173.138, server: localhost, request: "GET /nmaplowercheck1778248528 HTTP/1.1", host: "42.121.109.127"
+2026/05/08 14:35:48 [error] 30#30: *85 open() "/usr/share/nginx/html/sdk" failed (2: No such file or directory), client: 121.199.173.138, server: localhost, request: "POST /sdk HTTP/1.1", host: "42.121.109.127"
+2026/05/08 14:35:48 [error] 30#30: *88 open() "/usr/share/nginx/html/evox/about" failed (2: No such file or directory), client: 121.199.173.138, server: localhost, request: "GET /evox/about HTTP/1.1", host: "42.121.109.127"
+2026/05/08 14:35:48 [error] 30#30: *89 open() "/usr/share/nginx/html/nmaplowercheck1778248528" failed (2: No such file or directory), client: 121.199.173.138, server: localhost, request: "GET /nmaplowercheck1778248528 HTTP/1.1", host: "42.121.109.127"
+2026/05/08 14:35:48 [error] 30#30: *92 open() "/usr/share/nginx/html/HNAP1" failed (2: No such file or directory), client: 121.199.173.138, server: localhost, request: "GET /HNAP1 HTTP/1.1", host: "42.121.109.127"
