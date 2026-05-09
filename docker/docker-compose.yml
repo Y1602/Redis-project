@@ -15,6 +15,18 @@ services:
     ports:
       - 80:80
 
+  mysql:
+    image: mysql:latest
+    container_name: accessguard-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: accessguard
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    restart: unless-stopped
+
   accessguard:
     image: accessguard:1.0
     container_name: accessguard-app
@@ -37,7 +49,7 @@ services:
       NGINX_LOG_PATH: /logs/access.log
       SLEEP_INTERVAL: 1
     volumes:
-      - ./logs:/logs        # 挂载 Nginx 日志目录
+      - ./logs:/logs
     depends_on:
       - accessguard
       - nginx
