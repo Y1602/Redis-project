@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS risk_events (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  ip VARCHAR(45) NOT NULL,
+  path VARCHAR(2048) NOT NULL,
+  status_code INT NOT NULL,
+  risk_score INT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY idx_risk_events_ip_created_at (ip, created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS ban_history (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  ip VARCHAR(45) NOT NULL,
+  ban_start DATETIME NOT NULL,
+  ban_end DATETIME NOT NULL,
+  reason VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY idx_ban_history_ip_created_at (ip, created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

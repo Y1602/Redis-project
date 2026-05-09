@@ -5,6 +5,11 @@ services:
     ports:
       - 6380:6379
     command: redis-server --requirepass redispwd
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "redispwd", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
     restart: unless-stopped
 
   nginx:
@@ -25,9 +30,18 @@ services:
       - 3306:3306
     volumes:
       - ./mysql_data:/var/lib/mysql
+      - ./mysql_init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p123456"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
     restart: unless-stopped
 
   accessguard:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: accessguard:1.0
     container_name: accessguard-app
     environment:
@@ -35,13 +49,29 @@ services:
       REDIS_PORT: 6379
       REDIS_PASSWORD: redispwd
       REDIS_DB: 0
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123456
+      MYSQL_DB: accessguard
     ports:
       - 5000:5000
     depends_on:
-      - redis
-      - nginx
+      redis:
+        condition: service_healthy
+      mysql:
+        condition: service_healthy
+      nginx:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/health', timeout=2).read()"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
 
   log-forwarder:
+    build:
+      context: .
+      dockerfile: Dockerfile_Log
     image: log-forwarder:latest
     container_name: accessguard-log-forwarder
     environment:
@@ -51,6 +81,8 @@ services:
     volumes:
       - ./logs:/logs
     depends_on:
-      - accessguard
-      - nginx
+      accessguard:
+        condition: service_healthy
+      nginx:
+        condition: service_started
 
