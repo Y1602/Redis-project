@@ -17,8 +17,26 @@ services:
     container_name: accessguard-nginx
     volumes:
       - ./logs:/var/log/nginx
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     ports:
       - 80:80
+    depends_on:
+      web:
+        condition: service_healthy
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile_Web
+    image: accessguard-web:1.0
+    container_name: accessguard-web
+    expose:
+      - 8000
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=2).read()"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
 
   mysql:
     image: mysql:latest
